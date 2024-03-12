@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import InputTask from "./InputTask";
 import Gender from "./Gender";
@@ -14,9 +14,9 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [count, setCount] = useState(0);
 
   const onSubmit = (data) => {
+    console.log("data gotit")
     console.log("userDatacode",data);
   };
 
@@ -128,8 +128,6 @@ const Form = () => {
           errors={errors}
           />
         <BagInfo
-          count={count}
-          setCount={setCount}
           register={register}
           errors={errors}
         />

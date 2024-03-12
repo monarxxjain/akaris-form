@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CheckBoxes from "./CheckBoxes";
+import InputTask from "./InputTask";
 
 function BagInfo({ register},ref) {
-  const [count, setCount] = useState(0);
+
 
   return (
     <div className="md:max-w-[700px]">
@@ -21,8 +22,7 @@ function BagInfo({ register},ref) {
             Bag Count
           </p>
           <p className="text-gray-500 p-2 ">
-            {/* Display the bag count */}
-            {count}
+            Enter the Number of Bags in total
           </p>
         </div>
         <div>
@@ -30,28 +30,14 @@ function BagInfo({ register},ref) {
             Adjust Bag Count
           </p>
           <div className="flex">
-            <button
-              className="text-2xl text-gray-500 "
-              onClick={() => count > 0 ? setCount(prevCount => prevCount - 1) : null}
-            >
-              -
-            </button>
-            <p className="text-gray-500 p-2 text-xl ">{count}</p>
-            <button
-              className="text-2xl text-gray-500 "
-              onClick={() => setCount(prevCount => prevCount + 1)}
-            >
-              +
-            </button>
+            <InputTask 
+              type="number"
+              label="Bag Count"
+              {...register("bagCount")}
+            />
           </div>
         </div>
       </div>
-      {/* Include hidden input field to store bag count in form data */}
-      <input
-        type="hidden"
-        {...register("bagCount", { value: count })}
-        ref={ref}
-      />
       <CheckBoxes 
         register={register}
         ref={ref}
