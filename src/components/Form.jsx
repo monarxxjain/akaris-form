@@ -5,10 +5,8 @@ import Gender from "./Gender";
 import DateSelector from "./DateSelector";
 import Title from "./Title";
 import CountryInitials from "./CountryInitials";
-import EmergencyContact from "./EmergencyContact";
 
 const Form = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,7 +16,6 @@ const Form = () => {
   const onSubmit = (data) => {
     console.log("data gotit");
     console.log("userDatacode", data);
-    setFormSubmitted(true);
   };
 
   const handleCancel = () => {
@@ -83,7 +80,6 @@ const Form = () => {
                       ) || "Email address must be a valid address",
                   },
                 })}
-                disabled={formSubmitted} // Disable when form is submitted
                 error={
                   errors.email &&
                   (errors.email.message = "Email address is required")
@@ -193,7 +189,6 @@ const Form = () => {
             }
           />
         </div>
-        <EmergencyContact formSubmitted={formSubmitted} register={register} errors={errors} />
         <div>
         <button
           type="submit"
