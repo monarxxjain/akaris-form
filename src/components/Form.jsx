@@ -134,7 +134,7 @@ const Form = () => {
               />
 
               <p className="text-red-500 text-xs px-1">
-                {errors.passportNumber?.message}
+                {errors.phoneNumber?.message}
               </p>
             </div>
           </div>
