@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputTask from "./InputTask";
 import Gender from "./Gender";
@@ -6,9 +6,9 @@ import DateSelector from "./DateSelector";
 import Title from "./Title";
 import CountryInitials from "./CountryInitials";
 import EmergencyContact from "./EmergencyContact";
-import BagInfo from "./BagInfo";
 
 const Form = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,7 +18,12 @@ const Form = () => {
   const onSubmit = (data) => {
     console.log("data gotit");
     console.log("userDatacode", data);
+    setFormSubmitted(true);
   };
+
+  const handleCancel = () => {
+    console.log("cancel");
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -78,6 +83,7 @@ const Form = () => {
                       ) || "Email address must be a valid address",
                   },
                 })}
+                disabled={formSubmitted} // Disable when form is submitted
                 error={
                   errors.email &&
                   (errors.email.message = "Email address is required")
@@ -98,7 +104,6 @@ const Form = () => {
               />
               <p className="text-red-500 text-xs px-1">{errors.dob?.message}</p>
             </div>
-
             <Gender register={register} errors={errors} />
           </div>
         </div>
@@ -116,15 +121,22 @@ const Form = () => {
             <div className="flex flex-col">
               <InputTask
                 label="Phone Number*"
-                type="text"
+                type="number"
+                className="decoration-transparent"
                 {...register("phoneNumber", {
                   required: "Phone Number is required",
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message:
+                      "Please enter a valid phone number with numbers only",
+                  },
                 })}
                 error={
-                  errors.passportNumber &&
-                  (errors.passportNumber.message = "Phone Number is required")
+                  errors.phoneNumber &&
+                  (errors.phoneNumber.message = "Phone Number is required")
                 }
               />
+
               <p className="text-red-500 text-xs px-1">
                 {errors.passportNumber?.message}
               </p>
@@ -169,26 +181,28 @@ const Form = () => {
               {errors.passportNumber?.message}
             </p>
           </div>
-            <DateSelector
-              label="Passport Expiry*"
-              {...register("passportExpiry", {
-                required: "Passport Expiry Date is required",
-              })}
-              error={
-                errors.passportExpiry &&
-                (errors.passportExpiry.message =
-                  "Passport Expiry Date is required")
-              }
-            />
+          <DateSelector
+            label="Passport Expiry*"
+            {...register("passportExpiry", {
+              required: "Passport Expiry Date is required",
+            })}
+            error={
+              errors.passportExpiry &&
+              (errors.passportExpiry.message =
+                "Passport Expiry Date is required")
+            }
+          />
         </div>
-        <EmergencyContact register={register} errors={errors} />
-        <BagInfo register={register} errors={errors} />
+        <EmergencyContact formSubmitted={formSubmitted} register={register} errors={errors} />
+        <div>
         <button
           type="submit"
           className="text-blue-500 border-blue-500 border-2 hover:text-white hover:bg-blue-500 transition-transform ease-in-out font-bold py-2 px-4 rounded mt-4"
         >
           Save and close
         </button>
+        <button className="border-red-600 border-2 py-2 px-4 rounded-md mx-8" onClick={handleCancel}>Cancel</button>
+        </div>
         <p>{errors.message}</p>
       </div>
     </form>

@@ -1,7 +1,7 @@
 import React from "react";
 import InputTask from "./InputTask";
 
-function EmergencyContact({ register, errors }) {
+function EmergencyContact({ formSubmitted, register, errors }) {
   return (
     <div>
       <p className="text-ls p-2 font-semibold text-gray-500">
@@ -33,14 +33,13 @@ function EmergencyContact({ register, errors }) {
                   "Email address must be a valid address",
               },
             })}
-            // ref={ref}
+            disabled={formSubmitted}
             error={errors.emergencyEmail && errors.emergencyEmail.message}
           />
           <InputTask
             label="Phone Number*"
             {...register("emergencyPhone", { required: "Phone Number is required" })}
             error={errors.emergencyPhone && errors.emergencyPhone.message}
-            // ref={ref}
           />
         </div>
       </div>
