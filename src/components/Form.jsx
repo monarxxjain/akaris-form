@@ -6,7 +6,7 @@ import DateSelector from "./DateSelector";
 import Title from "./Title";
 import CountryInitials from "./CountryInitials";
 
-const Form = () => {
+const Form = ({passenger}) => {
   const {
     register,
     handleSubmit,
@@ -24,8 +24,8 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="p-24">
-        <p className="text-xl p-2 font-semibold text-gray-500">Passenger 1</p>
+      <div className="px-24 py-6">
+        <p className="text-xl p-2 font-semibold text-gray-500">{passenger}</p>
         <p className="text-sm px-1 py-2 text-zinc-500 font-medium">
           Passenger Details
         </p>
