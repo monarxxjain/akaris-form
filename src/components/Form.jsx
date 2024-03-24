@@ -6,7 +6,7 @@ import DateSelector from "./DateSelector";
 import Title from "./Title";
 import CountryInitials from "./CountryInitials";
 
-const Form = ({passenger}) => {
+const Form = ({ passenger }) => {
   const {
     register,
     handleSubmit,
@@ -24,15 +24,16 @@ const Form = ({passenger}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="px-24 py-6">
-        <p className="text-xl p-2 font-semibold text-gray-500">{passenger}</p>
-        <p className="text-sm px-1 py-2 text-zinc-500 font-medium">
+      <div className="lg:border-2 lg:border-gray-300 rounded-xl lg:mx-24 my-6 p-6 md:p-16">
+        <p className="text-xl text-left p-2 font-semibold text-gray-500">{passenger}</p>
+        <br />
+        <p className="text-sm text-left px-1 py-2 text-zinc-500 font-medium">
           Passenger Details
         </p>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex flex-col gap-4 flex-wrap">
           <div className="flex gap-4 flex-wrap">
             <Title {...register("title", { required: "Title is required" })} />
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full sm:w-auto max-w-[300px]">
               <InputTask
                 label="First Name*"
                 {...register("firstName", {
@@ -47,8 +48,10 @@ const Form = ({passenger}) => {
                 {errors.firstName?.message}
               </p>
             </div>
-            <InputTask label="Middle Name" {...register("middleName")} />
-            <div className="flex flex-col">
+            <div className="w-full sm:w-auto max-w-[300px]">
+              <InputTask  label="Middle Name" {...register("middleName")} />
+            </div>
+            <div className="flex flex-col w-full sm:w-auto max-w-[300px]">
               <InputTask
                 label="Last Name*"
                 {...register("lastName", { required: "Last Name is required" })}
@@ -62,13 +65,16 @@ const Form = ({passenger}) => {
               </p>
             </div>
           </div>
-          <div className="flex gap-4 flex-wrap">
-            <InputTask
-              label="Suffix"
-              {...register("suffix")}
-              error={errors.suffix && errors.suffix.message}
-            />
-            <div className="flex flex-col">
+          <div className="flex gap-4 flex-wrap ">
+            <div className="w-full sm:w-auto max-w-[300px]">
+              <InputTask
+                label="Suffix"
+                {...register("suffix")}
+                error={errors.suffix && errors.suffix.message}
+              />
+
+            </div>
+            <div className="flex flex-col w-full sm:w-auto max-w-[300px]">
               <InputTask
                 label="Email Address*"
                 {...register("email", {
@@ -103,7 +109,8 @@ const Form = ({passenger}) => {
             <Gender register={register} errors={errors} />
           </div>
         </div>
-        <p className="text-sm px-1 pb-2 text-zinc-500 font-medium">
+        <br />
+        <p className="text-sm text-left px-1 pb-2 text-zinc-500 font-medium">
           Travelling Details
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -151,7 +158,8 @@ const Form = ({passenger}) => {
             />
           </div>
         </div>
-        <p className="text-sm px-1 pt-2 text-zinc-500 font-medium">
+        <br />
+        <p className="text-sm text-left px-1 pt-2 text-zinc-500 font-medium">
           Travel Documents
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -189,14 +197,14 @@ const Form = ({passenger}) => {
             }
           />
         </div>
-        <div>
-        <button
-          type="submit"
-          className="text-blue-500 border-blue-500 border-2 hover:text-white hover:bg-blue-500 transition-transform ease-in-out font-bold py-2 px-4 rounded mt-4"
-        >
-          Save and close
-        </button>
-        <button className="border-red-600 border-2 py-2 px-4 rounded-md mx-8" onClick={handleCancel}>Cancel</button>
+        <div className="text-left">
+          <button
+            type="submit"
+            className="text-blue-500 text-left border-blue-500 border-2 hover:text-white hover:bg-blue-500 transition-transform ease-in-out font-bold py-2 px-4 rounded mt-4"
+          >
+            Submit Info
+          </button>
+          <button className="border-red-600 border-2 py-2 px-4 rounded-md mx-8" onClick={handleCancel}>Cancel</button>
         </div>
         <p>{errors.message}</p>
       </div>

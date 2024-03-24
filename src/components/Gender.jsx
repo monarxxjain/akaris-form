@@ -5,7 +5,7 @@ function Gender({ onChange,...props },ref) {
   return (
     <div className="flex">
       <div className="relative flex flex-col rounded-xl bg-clip-border text-gray-700 ">
-        <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-400 px-2">
+        <p className="block font-sans text-base antialiased text-left ms-4 leading-relaxed text-blue-gray-400 px-2">
           Gender
         </p>
         <nav className="flex flex-row font-sans text-sm font-normal text-blue-gray-700">
@@ -51,7 +51,7 @@ function Gender({ onChange,...props },ref) {
                   </label>
                 </div>
               </div>
-              <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-400">
+              <p className="block font-sans text-base antialiased  leading-relaxed text-blue-gray-400">
                 Male
               </p>
             </label>
@@ -99,7 +99,7 @@ function Gender({ onChange,...props },ref) {
                   </label>
                 </div>
               </div>
-              <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-400">
+              <p className="block font-sans text-base antialiased leading-relaxed text-blue-gray-400">
                 Female
               </p>
             </label>
